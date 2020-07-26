@@ -52,7 +52,7 @@ def beautybox_content(request: Request, pk: int) -> Response:
             listdata['about'] = beautybox_item.get('about')
             listdata['weight_grams'] = beautybox_item.get('weight_grams')
             listdata['price'] = beautybox_item.get('price')
-        beautyboxes = listdata
+            beautyboxes = listdata
 
     if response:
         return Response(beautyboxes)
