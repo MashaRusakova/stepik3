@@ -22,7 +22,6 @@ def beautybox_list(request: Request) -> Response:
         for box in beautyboxes:
             if (box['price'] >= int(price)) or (box['weight_grams'] >= int(weight)):
                 result.append(box)
-
     else:
         result = beautyboxes
 
