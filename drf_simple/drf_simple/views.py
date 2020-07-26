@@ -1,4 +1,5 @@
 import requests
+from pip._internal.utils import logging
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -21,6 +22,7 @@ def beautybox_list(request: Request) -> Response:
 
         for box in beautyboxes:
             if (box['price'] >= int(price)) or (box['weight_grams'] >= int(weight)):
+
                 result.append(box)
     else:
         result = beautyboxes
