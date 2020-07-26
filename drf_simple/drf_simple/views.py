@@ -14,16 +14,19 @@ def beautybox_list(request: Request) -> Response:
     beautyboxes = response.json()
 
     if request.query_params:
-        price = request.query_params.get('min_price', 0)
-        weight = request.query_params.get('min_weight', 0)
+        price = request.query_params.get('min_price')
+        weight = request.query_params.get('min_weight')
 
-        if not (price or weight):
+        if price:
+            for box in beautyboxes:
+                if box['price'] >= int(price):
+                    result.append(box)
+        elif weight:
+            for box in beautyboxes:
+                if box['weight_grams'] >= int(weight):
+                    result.append(box)
+        else:
             return Response(status=status.HTTP_404_NOT_FOUND)
-
-        for box in beautyboxes:
-            if (box['price'] >= int(price)) or (box['weight_grams'] >= int(weight)):
-
-                result.append(box)
     else:
         result = beautyboxes
 
