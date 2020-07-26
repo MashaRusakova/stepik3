@@ -17,10 +17,10 @@ def beautybox_list(request: Request) -> Response:
         weight = request.query_params.get('min_weight', 0)
 
         if not (price or weight):
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+            return Response(status=status.HTTP_404_NOT_FOUND)
 
         for box in beautyboxes:
-            if box['price'] >= int(price) or box['weight_grams'] >= int(weight):
+            if (box['price'] >= int(price)) or (box['weight_grams'] >= int(weight)):
                 result.append(box)
 
     else:
